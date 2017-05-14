@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         //MultiSelectModel
         MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
                 .title(getResources().getString(R.string.multi_select_dialog_title)) //setting title for dialog
-                .titleSize(20)
+                .titleSize(25)
                 .positiveText("Done")
                 .negativeText("Cancel")
                 .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected

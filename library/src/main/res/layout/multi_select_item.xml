@@ -5,11 +5,12 @@
     android:orientation="horizontal"
     android:layout_marginTop="@dimen/layout_margin">
 
-    <CheckBox
+    <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/dialog_item_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:buttonTint="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/dialog_item_name"

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -11,7 +12,6 @@ import android.text.style.TextAppearanceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -111,12 +111,12 @@ class MutliSelectAdapter extends RecyclerView.Adapter<MutliSelectAdapter.MultiSe
 
     class MultiSelectDialogViewHolder extends RecyclerView.ViewHolder {
         private TextView dialog_name_item;
-        private CheckBox dialog_item_checkbox;
+        private AppCompatCheckBox dialog_item_checkbox;
 
         MultiSelectDialogViewHolder(View view) {
             super(view);
             dialog_name_item = (TextView) view.findViewById(R.id.dialog_item_name);
-            dialog_item_checkbox = (CheckBox) view.findViewById(R.id.dialog_item_checkbox);
+            dialog_item_checkbox = (AppCompatCheckBox) view.findViewById(R.id.dialog_item_checkbox);
         }
     }
 }
