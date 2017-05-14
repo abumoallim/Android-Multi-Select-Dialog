@@ -7,6 +7,13 @@ Features
 * Search through list
 * Highlighted the search text
 
+Demo
+--------
+For a working implementation of this project see the `app/src/` folder.
+
+<img src="ezgif.com-video-to-gif.gif">
+
+
 Setup
 --------
 
