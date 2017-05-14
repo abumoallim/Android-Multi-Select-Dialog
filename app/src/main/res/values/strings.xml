@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SampleApplication</string>
+    <string name="multi_select_dialog_title">Select Countries</string>
+</resources>

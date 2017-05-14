@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Library</string>
+    <string name="dialog_done_text">DONE</string>
+    <string name="dialog_cancel_text">CANCEL</string>
+    <string name="list_empty">No items to display</string>
+    <string name="select_entry">Select Entries</string>
+</resources>

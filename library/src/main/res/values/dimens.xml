@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_heading">25sp</dimen>
+    <dimen name="font_size_subheading">18sp</dimen>
+    <dimen name="font_size_normal">14sp</dimen>
+
+    <dimen name="recyclerview_margin">10dp</dimen>
+    <dimen name="layout_margin">10dp</dimen>
+    <dimen name="searchview_margin">5dp</dimen>
+    <dimen name="text_button_size">14sp</dimen>
+    <dimen name="textview_margin">10dp</dimen>
+</resources>
