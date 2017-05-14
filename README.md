@@ -11,8 +11,9 @@ Setup
 --------
 
 Gradle:
-Inside your project gradle add maven reposi
-```repositories {
+
+```
+repositories {
        maven { url "https://dl.bintray.com/abumoallim16/Abu" }
     }
 
@@ -23,9 +24,10 @@ Inside your project gradle add maven reposi
 
 Usage
 --------
+See Sample in SampleApplication
 ```
 MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
-                .title(getResources().getString(R.string.multi_select_dialog_title)) //setting title for dialog
+                .title("your string") //setting title for dialog
                 .titleSize(20) //setting textSize
                 .positiveText("Done") //setting Submit text
                 .negativeText("Cancel") //setting Cancel text
