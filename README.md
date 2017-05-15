@@ -20,10 +20,6 @@ Setup
 Gradle:
 
 ```
-repositories {
-       maven { url "https://dl.bintray.com/abumoallim16/Abu" }
-    }
-
     dependencies {
          compile 'com.abdeveloper:multi-select-dialog:1.0'
     }
@@ -56,7 +52,7 @@ MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
 License
 --------
 
-    Copyright 2015 Marko Milos
+    Copyright 2017 Abubakker Moallim
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
