@@ -14,26 +14,19 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.util.ArrayList;
 
 public class MultiSelectDialog extends AppCompatDialogFragment implements SearchView.OnQueryTextListener, View.OnClickListener {
 
+    public static ArrayList<Integer> selectedIdsForCallback = new ArrayList<>();
+    public ArrayList<MultiSelectModel> mainListOfAdapter = new ArrayList<>();
     private MutliSelectAdapter mutliSelectAdapter;
-
-
     //Default Values
     private String title ;
     private float titleSize = 25;
     private String positiveText = "DONE";
     private String negativeText = "CANCEL";
-
-
     private TextView dialogTitle, dialogSubmit, dialogCancel;
-
-
-    public static ArrayList<Integer> selectedIdsForCallback = new ArrayList<>();
-    public ArrayList<MultiSelectModel> mainListOfAdapter = new ArrayList<>();
     private ArrayList<Integer> previouslySelectedIdsList = new ArrayList<>();
 
     private SubmitCallbackListener submitCallbackListener;
@@ -179,11 +172,11 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
             ArrayList<Integer> callBackListOfIds = selectedIdsForCallback;
             if (callBackListOfIds.size() > 0) {
                 if(submitCallbackListener !=null) {
-                    submitCallbackListener.onDismiss(callBackListOfIds);
+                    submitCallbackListener.onDismiss(callBackListOfIds, mutliSelectAdapter.getSelectedNameList(), mutliSelectAdapter.getDataString());
                 }
                 dismiss();
             } else {
-                Toast.makeText(getActivity(), "Please select atleast one option", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.validation_text, Toast.LENGTH_LONG).show();
             }
         }
 
@@ -192,12 +185,12 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         }
     }
 
-    public interface SubmitCallbackListener {
-        void onDismiss(ArrayList<Integer> ids);
-    }
-
     public void setCallbackListener(SubmitCallbackListener submitCallbackListener) {
         this.submitCallbackListener = submitCallbackListener;
+    }
+
+    public interface SubmitCallbackListener {
+        void onDismiss(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String commonSeperatedData);
     }
 
 }
