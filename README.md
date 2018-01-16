@@ -21,7 +21,7 @@ Gradle:
 
 ```
     dependencies {
-         compile 'com.abdeveloper:multi-select-dialog:1.0'
+       compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.3'
     }
 ```
 
@@ -36,15 +36,18 @@ MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
                 .negativeText("Cancel") //setting Cancel text
                 .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected
                 .multiSelectList(listOfCountries) // the multi select model list with ids and name
-                .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
+               .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
                     @Override
-                    public void onDismiss(ArrayList<Integer> ids) {
-                        //will return list of selected IDS
-                        for(int i=0;i<ids.size();i++){
-                            Toast.makeText(MainActivity.this,"Selected Ids : " + ids.get(i),Toast.LENGTH_SHORT).show();
+                    public void onDismiss(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString)                        {
+                        //will return list of selected IDS, selected Names, commo seperated name list
+                        for (int i = 0; i < selectedIds.size(); i++) {
+                            Toast.makeText(MainActivity.this, "Selected Ids : " + selectedIds.get(i) + "\n" +
+                                    "Selected Names : " + selectedNames.get(i) + "\n" +
+                                    "DataString : " + dataString, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
 
 ```
 
