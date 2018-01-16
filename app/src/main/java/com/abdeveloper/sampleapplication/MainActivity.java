@@ -43,10 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 .multiSelectList(listOfCountries) // the multi select model list with ids and name
                 .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
                     @Override
-                    public void onDismiss(ArrayList<Integer> ids) {
+                    public void onDismiss(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString) {
                         //will return list of selected IDS
-                        for(int i=0;i<ids.size();i++){
-                            Toast.makeText(MainActivity.this,"Selected Ids : " + ids.get(i),Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < selectedIds.size(); i++) {
+                            Toast.makeText(MainActivity.this, "Selected Ids : " + selectedIds.get(i) + "\n" +
+                                    "Selected Names : " + selectedNames.get(i) + "\n" +
+                                    "DataString : " + dataString, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
