@@ -21,7 +21,7 @@ Gradle:
 
 ```
     dependencies {
-       compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.4'
+       compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.5'
     }
 ```
 
@@ -29,25 +29,34 @@ Usage
 --------
 See Sample in SampleApplication
 ```
-MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
-                .title("your string") //setting title for dialog
-                .titleSize(20) //setting textSize
-                .positiveText("Done") //setting Submit text
-                .negativeText("Cancel") //setting Cancel text
+ //MultiSelectModel
+        MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
+                .title(getResources().getString(R.string.multi_select_dialog_title)) //setting title for dialog
+                .titleSize(25)
+                .positiveText("Done")
+                .negativeText("Cancel")
                 .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected
                 .multiSelectList(listOfCountries) // the multi select model list with ids and name
-               .onSelected(new MultiSelectDialog.SubmitCallbackListener() {
+                .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
                     @Override
-                    public void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString)                        {
-                        //will return list of selected IDS, selected Names, commo seperated name list
+                    public void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString) {
+                        //will return list of selected IDS
                         for (int i = 0; i < selectedIds.size(); i++) {
                             Toast.makeText(MainActivity.this, "Selected Ids : " + selectedIds.get(i) + "\n" +
                                     "Selected Names : " + selectedNames.get(i) + "\n" +
                                     "DataString : " + dataString, Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
 
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d(TAG,"Dialog cancelled");
+                    }
+
+
+                });
 
 ```
 
