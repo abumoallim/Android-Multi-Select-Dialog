@@ -21,7 +21,7 @@ Gradle:
 
 ```
     dependencies {
-       compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.3'
+       compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.4'
     }
 ```
 
