@@ -2,6 +2,7 @@ package com.abdeveloper.sampleapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.abdeveloper.library.MultiSelectDialog;
@@ -10,6 +11,8 @@ import com.abdeveloper.library.MultiSelectModel;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String TAG = "Cancel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,19 @@ public class MainActivity extends AppCompatActivity {
         listOfCountries.add(new MultiSelectModel(6,"SINGAPORE"));
         listOfCountries.add(new MultiSelectModel(7,"CHINA"));
         listOfCountries.add(new MultiSelectModel(8,"RUSSIA"));
+        listOfCountries.add(new MultiSelectModel(9,"BANGLADESH"));
+        listOfCountries.add(new MultiSelectModel(10,"BELGIUM"));
+        listOfCountries.add(new MultiSelectModel(11,"DENMARK"));
+        listOfCountries.add(new MultiSelectModel(12,"GERMANY"));
+        listOfCountries.add(new MultiSelectModel(13,"HONG KONG"));
+        listOfCountries.add(new MultiSelectModel(14,"INDONESIA"));
+        listOfCountries.add(new MultiSelectModel(15,"NETHERLAND"));
+        listOfCountries.add(new MultiSelectModel(16,"NEW ZEALAND"));
+        listOfCountries.add(new MultiSelectModel(17,"PORTUGAL"));
+        listOfCountries.add(new MultiSelectModel(18,"KUWAIT"));
+        listOfCountries.add(new MultiSelectModel(19,"QATAR"));
+        listOfCountries.add(new MultiSelectModel(20,"SAUDI ARABIA"));
+        listOfCountries.add(new MultiSelectModel(21,"SRI LANKA"));
 
         //MultiSelectModel
         MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
@@ -43,13 +59,20 @@ public class MainActivity extends AppCompatActivity {
                 .multiSelectList(listOfCountries) // the multi select model list with ids and name
                 .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
                     @Override
-                    public void onDismiss(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString) {
+                    public void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString) {
                         //will return list of selected IDS
                         for (int i = 0; i < selectedIds.size(); i++) {
                             Toast.makeText(MainActivity.this, "Selected Ids : " + selectedIds.get(i) + "\n" +
                                     "Selected Names : " + selectedNames.get(i) + "\n" +
                                     "DataString : " + dataString, Toast.LENGTH_SHORT).show();
                         }
+
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d(TAG,"Dialog Dismissed without selection");
                     }
                 });
 

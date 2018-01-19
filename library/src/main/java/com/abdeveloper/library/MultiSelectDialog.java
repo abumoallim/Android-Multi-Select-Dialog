@@ -172,7 +172,7 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
             ArrayList<Integer> callBackListOfIds = selectedIdsForCallback;
             if (callBackListOfIds.size() > 0) {
                 if(submitCallbackListener !=null) {
-                    submitCallbackListener.onDismiss(callBackListOfIds, mutliSelectAdapter.getSelectedNameList(), mutliSelectAdapter.getDataString());
+                    submitCallbackListener.onSelected(callBackListOfIds, mutliSelectAdapter.getSelectedNameList(), mutliSelectAdapter.getDataString());
                 }
                 dismiss();
             } else {
@@ -181,6 +181,9 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         }
 
         if (view.getId() == R.id.cancel) {
+            if(submitCallbackListener!=null){
+                submitCallbackListener.onCancel();
+            }
             dismiss();
         }
     }
@@ -190,7 +193,8 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     }
 
     public interface SubmitCallbackListener {
-        void onDismiss(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String commonSeperatedData);
+        void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String commonSeperatedData);
+        void onCancel();
     }
 
 }
