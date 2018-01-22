@@ -17,12 +17,24 @@ For a working implementation of this project see the `app/src/` folder.
 Setup
 --------
 
-Gradle:
 
+1. **Add the JitPack repository to your build file**
+
+ Add it in your root build.gradle at the end of repositories:
+```gradle
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
-    dependencies {
+
+2. **Add the dependency**
+```gradle
+	dependencies {
        compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.5'
-    }
+	}
 ```
 
 Usage
