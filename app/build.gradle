@@ -28,7 +28,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:27.0.2'
-   // compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.5'
+    compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.6'
 
     compile 'com.android.support:multidex:1.0.2'
 
