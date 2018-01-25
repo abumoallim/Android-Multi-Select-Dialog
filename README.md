@@ -33,7 +33,7 @@ Setup
 2. **Add the dependency**
 ```gradle
 	dependencies {
-      		 compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.5'
+      		 compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.6'
 	}
 ```
 
