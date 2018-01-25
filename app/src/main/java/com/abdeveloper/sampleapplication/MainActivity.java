@@ -3,23 +3,34 @@ package com.abdeveloper.sampleapplication;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
+
 
 import com.abdeveloper.library.MultiSelectDialog;
 import com.abdeveloper.library.MultiSelectModel;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String TAG = "Cancel";
+
+    Button show_dialog_btn;
+
+    MultiSelectDialog multiSelectDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_activity);
+
+        show_dialog_btn = findViewById(R.id.show_dialog);
+        show_dialog_btn.setOnClickListener(this);
 
         //preselected Ids of Country List
-        ArrayList<Integer> alreadySelectedCountries = new ArrayList<>();
+        final ArrayList<Integer> alreadySelectedCountries = new ArrayList<>();
         alreadySelectedCountries.add(1);
         alreadySelectedCountries.add(3);
         alreadySelectedCountries.add(4);
@@ -49,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
         listOfCountries.add(new MultiSelectModel(20,"SAUDI ARABIA"));
         listOfCountries.add(new MultiSelectModel(21,"SRI LANKA"));
 
+
+
         //MultiSelectModel
-        MultiSelectDialog multiSelectDialog = new MultiSelectDialog()
+        multiSelectDialog = new MultiSelectDialog()
                 .title(getResources().getString(R.string.multi_select_dialog_title)) //setting title for dialog
                 .titleSize(25)
                 .positiveText("Done")
@@ -72,12 +85,16 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancel() {
-                        Log.d(TAG,"Dialog Dismissed without selection");
+                        Log.d(TAG,"Dialog cancelled");
+
                     }
                 });
 
 
-        multiSelectDialog.show(getSupportFragmentManager(), "multiSelectDialog");
+    }
 
+    @Override
+    public void onClick(View view) {
+        multiSelectDialog.show(getSupportFragmentManager(), "multiSelectDialog");
     }
 }

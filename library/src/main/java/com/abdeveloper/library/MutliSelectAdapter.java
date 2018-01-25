@@ -118,7 +118,7 @@ class MutliSelectAdapter extends RecyclerView.Adapter<MutliSelectAdapter.MultiSe
     }
 
 
-    //get selected name string seperated by coma
+    /*//get selected name string seperated by coma
     public String getDataString() {
         String data = "";
         for (int i = 0; i < mDataSet.size(); i++) {
@@ -143,7 +143,7 @@ class MutliSelectAdapter extends RecyclerView.Adapter<MutliSelectAdapter.MultiSe
         }
         //  return names.toArray(new String[names.size()]);
         return names;
-    }
+    }*/
 
 
     @Override

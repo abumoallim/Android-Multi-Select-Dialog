@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class MultiSelectDialog extends AppCompatDialogFragment implements SearchView.OnQueryTextListener, View.OnClickListener {
 
     public static ArrayList<Integer> selectedIdsForCallback = new ArrayList<>();
+
     public ArrayList<MultiSelectModel> mainListOfAdapter = new ArrayList<>();
     private MutliSelectAdapter mutliSelectAdapter;
     //Default Values
@@ -28,6 +29,10 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     private String negativeText = "CANCEL";
     private TextView dialogTitle, dialogSubmit, dialogCancel;
     private ArrayList<Integer> previouslySelectedIdsList = new ArrayList<>();
+
+
+    private ArrayList<Integer> tempPreviouslySelectedIdsList = new ArrayList<>();
+    private ArrayList<MultiSelectModel> tempMainListOfAdapter = new ArrayList<>();
 
     private SubmitCallbackListener submitCallbackListener;
 
@@ -59,7 +64,6 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         dialogCancel.setOnClickListener(this);
 
         settingValues();
-
 
         mainListOfAdapter = setCheckedIDS(mainListOfAdapter, previouslySelectedIdsList);
         mutliSelectAdapter = new MutliSelectAdapter(mainListOfAdapter, getContext());
@@ -97,11 +101,13 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
 
     public MultiSelectDialog preSelectIDsList(ArrayList<Integer> list) {
         this.previouslySelectedIdsList = list;
+        this.tempPreviouslySelectedIdsList = new ArrayList<>(previouslySelectedIdsList);
         return this;
     }
 
     public MultiSelectDialog multiSelectList(ArrayList<MultiSelectModel> list) {
         this.mainListOfAdapter = list;
+        this.tempMainListOfAdapter = new ArrayList<>(mainListOfAdapter);
         return this;
     }
 
@@ -170,9 +176,14 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
 
         if (view.getId() == R.id.done) {
             ArrayList<Integer> callBackListOfIds = selectedIdsForCallback;
+
             if (callBackListOfIds.size() > 0) {
+
+                //to remember last selected ids which were successfully done
+                tempPreviouslySelectedIdsList = new ArrayList<>(callBackListOfIds);
+
                 if(submitCallbackListener !=null) {
-                    submitCallbackListener.onSelected(callBackListOfIds, mutliSelectAdapter.getSelectedNameList(), mutliSelectAdapter.getDataString());
+                    submitCallbackListener.onSelected(callBackListOfIds, getSelectNameList(), getSelectedDataString());
                 }
                 dismiss();
             } else {
@@ -182,10 +193,45 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
 
         if (view.getId() == R.id.cancel) {
             if(submitCallbackListener!=null){
+                selectedIdsForCallback.clear();
+                selectedIdsForCallback.addAll(tempPreviouslySelectedIdsList);
                 submitCallbackListener.onCancel();
             }
             dismiss();
         }
+    }
+
+    private String getSelectedDataString() {
+        String data = "";
+        for (int i = 0; i < tempMainListOfAdapter.size(); i++) {
+            if (checkForSelection(tempMainListOfAdapter.get(i).getId())) {
+                data = data + ", " + tempMainListOfAdapter.get(i).getName();
+            }
+        }
+        if (data.length() > 0) {
+            return data.substring(1);
+        } else {
+            return "";
+        }
+    }
+
+    private ArrayList<String> getSelectNameList() {
+        ArrayList<String> names = new ArrayList<>();
+        for(int i=0;i<tempMainListOfAdapter.size();i++){
+            if(checkForSelection(tempMainListOfAdapter.get(i).getId())){
+                names.add(tempMainListOfAdapter.get(i).getName());
+            }
+        }
+        return names;
+    }
+
+    private boolean checkForSelection(Integer id) {
+        for (int i = 0; i < MultiSelectDialog.selectedIdsForCallback.size(); i++) {
+            if (id == (MultiSelectDialog.selectedIdsForCallback.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setCallbackListener(SubmitCallbackListener submitCallbackListener) {
