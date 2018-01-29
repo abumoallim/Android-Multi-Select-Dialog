@@ -69,6 +69,9 @@ See Sample in SampleApplication
 
 
                 });
+		
+	 multiSelectDialog.show(getSupportFragmentManager(), "multiSelectDialog");
+
 
 ```
 
