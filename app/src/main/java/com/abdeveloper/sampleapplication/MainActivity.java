@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listOfCountries.add(new MultiSelectModel(19,"QATAR"));
         listOfCountries.add(new MultiSelectModel(20,"SAUDI ARABIA"));
         listOfCountries.add(new MultiSelectModel(21,"SRI LANKA"));
+        listOfCountries.add(new MultiSelectModel(130,"CANADA"));
 
 
 

@@ -50,11 +50,11 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         dialog.setContentView(R.layout.custom_multi_select);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        RecyclerViewEmptySupport mrecyclerView = (RecyclerViewEmptySupport) dialog.findViewById(R.id.recycler_view);
-        SearchView searchView = (SearchView) dialog.findViewById(R.id.search_view);
-        dialogTitle = (TextView) dialog.findViewById(R.id.title);
-        dialogSubmit = (TextView) dialog.findViewById(R.id.done);
-        dialogCancel = (TextView) dialog.findViewById(R.id.cancel);
+        RecyclerViewEmptySupport mrecyclerView =  dialog.findViewById(R.id.recycler_view);
+        SearchView searchView =  dialog.findViewById(R.id.search_view);
+        dialogTitle =  dialog.findViewById(R.id.title);
+        dialogSubmit =  dialog.findViewById(R.id.done);
+        dialogCancel =  dialog.findViewById(R.id.cancel);
 
         mrecyclerView.setEmptyView(dialog.findViewById(R.id.list_empty1));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -227,16 +227,16 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
 
     private boolean checkForSelection(Integer id) {
         for (int i = 0; i < MultiSelectDialog.selectedIdsForCallback.size(); i++) {
-            if (id == (MultiSelectDialog.selectedIdsForCallback.get(i))) {
+            if (id.equals(MultiSelectDialog.selectedIdsForCallback.get(i))) {
                 return true;
             }
         }
         return false;
     }
 
-    public void setCallbackListener(SubmitCallbackListener submitCallbackListener) {
+   /* public void setCallbackListener(SubmitCallbackListener submitCallbackListener) {
         this.submitCallbackListener = submitCallbackListener;
-    }
+    }*/
 
     public interface SubmitCallbackListener {
         void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String commonSeperatedData);
