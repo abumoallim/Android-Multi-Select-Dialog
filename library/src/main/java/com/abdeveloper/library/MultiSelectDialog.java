@@ -200,10 +200,16 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
                     }
                     dismiss();
                 } else {
-                    Toast.makeText(getActivity(), R.string.validation_text, Toast.LENGTH_LONG).show();
+                    String youCan = getResources().getString(R.string.you_can_only_select_upto);
+                    String options = getResources().getString(R.string.options);
+                    String message = youCan + maxSelectionLimit + options;
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(getActivity(), R.string.validation_text, Toast.LENGTH_LONG).show();
+                String pleaseSelect = getResources().getString(R.string.please_select_atleast);
+                String option = getResources().getString(R.string.option);
+                String message = pleaseSelect + minSelectionLimit + option;
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             }
         }
 
