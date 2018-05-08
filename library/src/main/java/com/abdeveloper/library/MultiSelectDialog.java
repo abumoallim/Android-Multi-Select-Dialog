@@ -35,6 +35,9 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     private ArrayList<MultiSelectModel> tempMainListOfAdapter = new ArrayList<>();
 
     private SubmitCallbackListener submitCallbackListener;
+    
+    private int maxSelectionLimit;
+    private int minSelectionLimit = 1;
 
 
     @NonNull
@@ -108,6 +111,15 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     public MultiSelectDialog multiSelectList(ArrayList<MultiSelectModel> list) {
         this.mainListOfAdapter = list;
         this.tempMainListOfAdapter = new ArrayList<>(mainListOfAdapter);
+        maxSelectionLimit = list.size();
+        return this;
+    }
+    public MultiSelectDialog setMaxSelectionLimit(int limit){
+        this.maxSelectionLimit = limit;
+        return this;
+    }
+    public MultiSelectDialog setMinSelectionLimit(int limit){
+        this.minSelectionLimit = limit;
         return this;
     }
 
@@ -177,15 +189,19 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         if (view.getId() == R.id.done) {
             ArrayList<Integer> callBackListOfIds = selectedIdsForCallback;
 
-            if (callBackListOfIds.size() > 0) {
+            if (callBackListOfIds.size() >= minSelectionLimit) {
+                if (callBackListOfIds.size() <= maxSelectionLimit) {
 
-                //to remember last selected ids which were successfully done
-                tempPreviouslySelectedIdsList = new ArrayList<>(callBackListOfIds);
+                    //to remember last selected ids which were successfully done
+                    tempPreviouslySelectedIdsList = new ArrayList<>(callBackListOfIds);
 
-                if(submitCallbackListener !=null) {
-                    submitCallbackListener.onSelected(callBackListOfIds, getSelectNameList(), getSelectedDataString());
+                    if(submitCallbackListener !=null) {
+                        submitCallbackListener.onSelected(callBackListOfIds, getSelectNameList(), getSelectedDataString());
+                    }
+                    dismiss();
+                } else {
+                    Toast.makeText(getActivity(), R.string.validation_text, Toast.LENGTH_LONG).show();
                 }
-                dismiss();
             } else {
                 Toast.makeText(getActivity(), R.string.validation_text, Toast.LENGTH_LONG).show();
             }
