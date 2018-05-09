@@ -189,8 +189,8 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         if (view.getId() == R.id.done) {
             ArrayList<Integer> callBackListOfIds = selectedIdsForCallback;
 
-            if (callBackListOfIds.size() >= this.minSelectionLimit) {
-                if (callBackListOfIds.size() <= this.maxSelectionLimit) {
+            if (callBackListOfIds.size() >= minSelectionLimit) {
+                if (callBackListOfIds.size() <= maxSelectionLimit) {
 
                     //to remember last selected ids which were successfully done
                     tempPreviouslySelectedIdsList = new ArrayList<>(callBackListOfIds);
@@ -202,13 +202,13 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
                 } else {
                     String youCan = getResources().getString(R.string.you_can_only_select_upto);
                     String options = getResources().getString(R.string.options);
-                    String message = youCan +" "+ maxSelectionLimit +" "+ options;
+                    String message = youCan + maxSelectionLimit + options;
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 }
             } else {
                 String pleaseSelect = getResources().getString(R.string.please_select_atleast);
                 String option = getResources().getString(R.string.option);
-                String message = pleaseSelect +" "+ minSelectionLimit +" "+ option;
+                String message = pleaseSelect + minSelectionLimit + option;
                 Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             }
         }
