@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .titleSize(25)
                 .positiveText("Done")
                 .negativeText("Cancel")
+                .setMinSelectionLimit(0)
+                .setMaxSelectionLimit(listOfCountries.size())
                 .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected
                 .multiSelectList(listOfCountries) // the multi select model list with ids and name
                 .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {

@@ -33,7 +33,7 @@ Setup
 2. **Add the dependency**
 ```gradle
 	dependencies {
-      		 compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.7'
+      		 compile 'com.github.abumoallim:Android-Multi-Select-Dialog:v1.8'
 	}
 ```
 
@@ -47,6 +47,8 @@ See Sample in SampleApplication
                 .titleSize(25)
                 .positiveText("Done")
                 .negativeText("Cancel")
+		.setMinSelectionLimit(1) //you can set minimum checkbox selection limit (Optional)
+		.setMaxSelectionLimit(listOfCountries.size()) //you can set maximum checkbox selection limit (Optional)
                 .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected
                 .multiSelectList(listOfCountries) // the multi select model list with ids and name
                 .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
