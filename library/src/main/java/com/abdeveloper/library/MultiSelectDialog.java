@@ -37,9 +37,9 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     private SubmitCallbackListener submitCallbackListener;
 
     private int minSelectionLimit = 1;
-    private String minSelectionLimitValidationMessage = null;
+    private String minSelectionMessage = null;
     private int maxSelectionLimit = 0;
-    private String maxSelectionLimitValidationMessage = null;
+    private String maxSelectionMessage = null;
 
     @NonNull
     @Override
@@ -120,8 +120,8 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         return this;
     }
 	
-	public MultiSelectDialog setMaxSelectionLimitValidationMessage(String message) {
-		this.maxSelectionLimitValidationMessage = message;
+	public MultiSelectDialog setMaxSelectionMessage(String message) {
+		this.maxSelectionMessage = message;
 		return this;
 	}
 	
@@ -130,8 +130,8 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         return this;
     }
 	
-	public MultiSelectDialog setMinSelectionLimitValidationMessage(String message) {
-		this.minSelectionLimitValidationMessage = message;
+	public MultiSelectDialog setMinSelectionMessage(String message) {
+		this.minSelectionMessage = message;
 		return this;
 	}
 
@@ -214,8 +214,8 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
                     String option = getResources().getString(R.string.option);
                     String message = "";
 
-                    if(this.maxSelectionLimitValidationMessage != null) {
-                        message = maxSelectionLimitValidationMessage.replace("{0}", String.valueOf(maxSelectionLimit));
+                    if(this.maxSelectionMessage != null) {
+                        message = maxSelectionMessage;
                     }
                     else {
                         if (maxSelectionLimit > 1)
@@ -231,8 +231,8 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
                 String option = getResources().getString(R.string.option);
                 String message = "";
 
-                if(this.minSelectionLimitValidationMessage != null) {
-                    message = minSelectionLimitValidationMessage.replace("{0}", String.valueOf(minSelectionLimit));
+                if(this.minSelectionMessage != null) {
+                    message = minSelectionMessage;
                 }
                 else {
                     if (minSelectionLimit > 1)
