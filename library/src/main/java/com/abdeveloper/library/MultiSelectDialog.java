@@ -23,7 +23,7 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     public ArrayList<MultiSelectModel> mainListOfAdapter = new ArrayList<>();
     private MutliSelectAdapter mutliSelectAdapter;
     //Default Values
-    private String title ;
+    private String title;
     private float titleSize = 25;
     private String positiveText = "DONE";
     private String negativeText = "CANCEL";
@@ -35,10 +35,11 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
     private ArrayList<MultiSelectModel> tempMainListOfAdapter = new ArrayList<>();
 
     private SubmitCallbackListener submitCallbackListener;
-    
-    private int maxSelectionLimit = 0;
-    private int minSelectionLimit = 1;
 
+    private int minSelectionLimit = 1;
+    private String minSelectionMessage = null;
+    private int maxSelectionLimit = 0;
+    private String maxSelectionMessage = null;
 
     @NonNull
     @Override
@@ -80,7 +81,6 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         return dialog;
     }
 
-
     public MultiSelectDialog title(String title) {
         this.title = title;
         return this;
@@ -101,7 +101,6 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         return this;
     }
 
-
     public MultiSelectDialog preSelectIDsList(ArrayList<Integer> list) {
         this.previouslySelectedIdsList = list;
         this.tempPreviouslySelectedIdsList = new ArrayList<>(previouslySelectedIdsList);
@@ -115,20 +114,31 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
             maxSelectionLimit = list.size();
         return this;
     }
+	
     public MultiSelectDialog setMaxSelectionLimit(int limit){
         this.maxSelectionLimit = limit;
         return this;
     }
+	
+	public MultiSelectDialog setMaxSelectionMessage(String message) {
+		this.maxSelectionMessage = message;
+		return this;
+	}
+	
     public MultiSelectDialog setMinSelectionLimit(int limit){
         this.minSelectionLimit = limit;
         return this;
     }
+	
+	public MultiSelectDialog setMinSelectionMessage(String message) {
+		this.minSelectionMessage = message;
+		return this;
+	}
 
     public MultiSelectDialog onSubmit(@NonNull SubmitCallbackListener callback) {
         this.submitCallbackListener = callback;
         return this;
     }
-
 
     private void settingValues() {
         dialogTitle.setText(title);
@@ -136,6 +146,7 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         dialogSubmit.setText(positiveText.toUpperCase());
         dialogCancel.setText(negativeText.toUpperCase());
     }
+
     private ArrayList<MultiSelectModel> setCheckedIDS(ArrayList<MultiSelectModel> multiselectdata, ArrayList<Integer> listOfIdsSelected) {
         for (int i = 0; i < multiselectdata.size(); i++) {
             multiselectdata.get(i).setSelected(false);
@@ -147,7 +158,6 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
         }
         return multiselectdata;
     }
-
 
     private ArrayList<MultiSelectModel> filter(ArrayList<MultiSelectModel> models, String query) {
         query = query.toLowerCase();
@@ -167,8 +177,6 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
 
         return filteredModelList;
     }
-
-
 
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -205,10 +213,16 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
                     String options = getResources().getString(R.string.options);
                     String option = getResources().getString(R.string.option);
                     String message = "";
-                    if(maxSelectionLimit > 1)
-                        message = youCan + " " + maxSelectionLimit + " " + options;
-                    else
-                        message = youCan + " " + maxSelectionLimit + " " + option;
+
+                    if(this.maxSelectionMessage != null) {
+                        message = maxSelectionMessage;
+                    }
+                    else {
+                        if (maxSelectionLimit > 1)
+                            message = youCan + " " + maxSelectionLimit + " " + options;
+                        else
+                            message = youCan + " " + maxSelectionLimit + " " + option;
+                    }
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 }
             } else {
@@ -216,10 +230,16 @@ public class MultiSelectDialog extends AppCompatDialogFragment implements Search
                 String options = getResources().getString(R.string.options);
                 String option = getResources().getString(R.string.option);
                 String message = "";
-                if(minSelectionLimit > 1)
-                    message = pleaseSelect + " " + minSelectionLimit + " " +options;
-                else
-                    message = pleaseSelect + " " + minSelectionLimit + " " +option;
+
+                if(this.minSelectionMessage != null) {
+                    message = minSelectionMessage;
+                }
+                else {
+                    if (minSelectionLimit > 1)
+                        message = pleaseSelect + " " + minSelectionLimit + " " + options;
+                    else
+                        message = pleaseSelect + " " + minSelectionLimit + " " + option;
+                }
                 Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             }
         }
